@@ -11,8 +11,15 @@ public class LineMover : MonoBehaviour
 
     private void Start()
     {
-        currentIndex = 0;
-        transform.position = lineRenderer.GetPosition(currentIndex);
+        Initialize(0, speed, lineRenderer);
+    }
+    public void Initialize(int index, float speed, LineRenderer lineRenderer)
+    {
+        enabled = true;
+        currentIndex = index;
+        this.speed = speed;
+        this.lineRenderer = lineRenderer;
+        transform.position = this.lineRenderer.GetPosition(currentIndex);
     }
 
     public static (Vector3 targetPosition, bool isEnd) GetTargetPosition(ref int index, float moveSpeed, Vector3 currentPosition, LineRenderer lineRenderer)
@@ -21,9 +28,9 @@ public class LineMover : MonoBehaviour
 
         if (lineRenderer.positionCount <= nextIndex)
         {
-            return (lineRenderer.GetPosition(index), true);
+            return (lineRenderer.GetPosition(index) + lineRenderer.transform.position, true);
         }
-        var nextPosition = lineRenderer.GetPosition(nextIndex);
+        var nextPosition = lineRenderer.GetPosition(nextIndex) + lineRenderer.transform.position;
 
         float distance = Vector3.Distance(currentPosition, nextPosition);
 
@@ -38,7 +45,6 @@ public class LineMover : MonoBehaviour
             return (currentPosition + direction * moveSpeed, false);
         }
     }
-
     private void Update()
     {
         var result = GetTargetPosition(
