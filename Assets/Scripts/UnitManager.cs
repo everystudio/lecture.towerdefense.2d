@@ -18,7 +18,7 @@ public class UnitManager : MonoBehaviour
         PlayerUnit.OnRemoved.RemoveListener(OnRemovedUnit);
     }
 
-    private void OnSpawnUnit(Vector2Int targetPosition)
+    private void OnSpawnUnit(Vector2Int targetPosition, PlayerUnitModel model)
     {
         if (!playerUnitDict.ContainsKey(targetPosition))
         {
@@ -26,7 +26,7 @@ public class UnitManager : MonoBehaviour
 
             GameObject unitPrefab = Resources.Load<GameObject>("Prefabs/Unit");
             PlayerUnit unit = Instantiate(unitPrefab, position, Quaternion.identity).GetComponent<PlayerUnit>();
-            unit.Initialize(targetPosition);
+            unit.Initialize(targetPosition, model);
 
             playerUnitDict.Add(targetPosition, unit);
         }

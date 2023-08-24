@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,25 @@ using UnityEngine.Events;
 
 public class PlayerUnitZombi : MonoBehaviour
 {
-    public static UnityEvent<Vector2Int> OnSpawnUnitRequest = new UnityEvent<Vector2Int>();
+    public static UnityEvent<Vector2Int, PlayerUnitModel> OnSpawnUnitRequest = new UnityEvent<Vector2Int, PlayerUnitModel>();
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    private PlayerUnitModel selectingModel;
+
+    private void OnEnable()
+    {
+        PlayerUnitSelectButton.OnUnitSelect.AddListener(SelectUnit);
+    }
+    private void OnDisable()
+    {
+        PlayerUnitSelectButton.OnUnitSelect.RemoveListener(SelectUnit);
+    }
+
+    private void SelectUnit(PlayerUnitModel arg0)
+    {
+        selectingModel = arg0;
+        spriteRenderer.sprite = arg0.spriteUnit;
+    }
 
     void Update()
     {
@@ -19,7 +38,7 @@ public class PlayerUnitZombi : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            OnSpawnUnitRequest.Invoke(roundPosition);
+            OnSpawnUnitRequest.Invoke(roundPosition, selectingModel);
             // マウスの位置にユニットを生成する
         }
     }
