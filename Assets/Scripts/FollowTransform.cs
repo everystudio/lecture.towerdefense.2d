@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowGauge : MonoBehaviour
+public class FollowTransform : MonoBehaviour
 {
     [SerializeField] private Transform target; // 追従する対象
     [SerializeField] private Vector3 offset; // オフセット（World Spaceのオフセット）
-    [SerializeField] private RectTransform rectTransform;
+    private RectTransform rectTransform;
 
     public void SetTarget(Transform target, Vector3 offset)
     {
