@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class PlayerUnitZombi : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerUnitZombi : MonoBehaviour
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     private PlayerUnitModel selectingModel;
+
+    private bool isHovering = false;
 
     private void OnEnable()
     {
@@ -34,12 +37,23 @@ public class PlayerUnitZombi : MonoBehaviour
         Vector3 targetPosition = Camera.main.ScreenToWorldPoint(mousePos);
         Vector2Int roundPosition = Vector2Int.RoundToInt(targetPosition);
 
-        transform.position = new Vector3(roundPosition.x, roundPosition.y, transform.position.z);
+        // マウスの位置がUIの上にある場合は、ユニットを表示しない
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            // マウスがUIの上にある、オブジェクトを取得する
+            Debug.Log(EventSystem.current.currentSelectedGameObject);
 
+            spriteRenderer.enabled = false;
+            return;
+        }
+        spriteRenderer.enabled = true;
+
+        transform.position = new Vector3(roundPosition.x, roundPosition.y, transform.position.z);
         if (Input.GetMouseButtonDown(0))
         {
             OnSpawnUnitRequest.Invoke(roundPosition, selectingModel);
             // マウスの位置にユニットを生成する
         }
     }
+
 }

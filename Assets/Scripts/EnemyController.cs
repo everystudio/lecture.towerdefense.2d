@@ -15,8 +15,8 @@ public class EnemyController : MonoBehaviour
         lineMover.OnEndReached += LineMover_OnEndReached;
 
         Transform rootTransform = GameObject.Find("tempLayer").transform;
-        Debug.Log(Resources.Load<GameObject>("Prefabs/HealthBar"));
-        Debug.Log(rootTransform);
+        //Debug.Log(Resources.Load<GameObject>("Prefabs/HealthBar"));
+        //Debug.Log(rootTransform);
 
         followGauge = Instantiate(Resources.Load<GameObject>("Prefabs/HealthBar"), rootTransform).GetComponent<FollowGauge>();
         followGauge.SetTarget(transform, Vector2.up * 0.5f);
@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
 
     private void LineMover_OnEndReached(object sender, EventArgs e)
     {
-        Debug.Log("終端に到着しました");
+        //Debug.Log("終端に到着しました");
 
         Castle.OnTakeDamage?.Invoke(10f);
         OnEndReached?.Invoke(this, EventArgs.Empty);
