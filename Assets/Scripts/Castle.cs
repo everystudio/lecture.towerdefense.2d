@@ -13,6 +13,7 @@ public class Castle : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
 
     public static UnityEvent<float> OnTakeDamage = new UnityEvent<float>();
+    public static UnityEvent OnCastleDestroy = new UnityEvent();
 
     private void Start()
     {
@@ -30,7 +31,16 @@ public class Castle : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            OnCastleDestroy.Invoke();
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnCastleDestroy.Invoke();
         }
     }
 

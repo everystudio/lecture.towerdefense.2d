@@ -37,20 +37,29 @@ public class PlayerUnitZombi : MonoBehaviour
         Vector3 targetPosition = Camera.main.ScreenToWorldPoint(mousePos);
         Vector2Int roundPosition = Vector2Int.RoundToInt(targetPosition);
 
-        // マウスの位置がUIの上にある場合は、ユニットを表示しない
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            // マウスがUIの上にある、オブジェクトを取得する
-            Debug.Log(EventSystem.current.currentSelectedGameObject);
 
+        // 右クリックしたら、ユニットを生成しない
+        if (Input.GetMouseButtonDown(1))
+        {
+            selectingModel = null;
+        }
+
+        // マウスの位置がUIの上にある場合は、ユニットを表示しない
+        if (EventSystem.current.IsPointerOverGameObject() || selectingModel == null)
+        {
+            // PointerOverしているオブジェクトを取得する
             spriteRenderer.enabled = false;
             return;
         }
+
+
         spriteRenderer.enabled = true;
 
         transform.position = new Vector3(roundPosition.x, roundPosition.y, transform.position.z);
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log(OnSpawnUnitRequest);
+            Debug.Log(selectingModel);
             OnSpawnUnitRequest.Invoke(roundPosition, selectingModel);
             // マウスの位置にユニットを生成する
         }
