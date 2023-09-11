@@ -12,6 +12,8 @@ public class PlayerUnitZombi : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     private PlayerUnitModel selectingModel;
 
+    [SerializeField] private GameManager gameManager;
+
     private bool isHovering = false;
 
     private void OnEnable()
@@ -52,15 +54,31 @@ public class PlayerUnitZombi : MonoBehaviour
             return;
         }
 
+        spriteRenderer.enabled = true;
+        transform.position = new Vector3(roundPosition.x, roundPosition.y, transform.position.z);
+
+        // selectingModelのコストが現在のコインよりも大きい場合は、ユニットを半透明にする
+        if (gameManager.coin < selectingModel.cost)
+        {
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+            return;
+        }
+        else
+        {
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+        }
 
         spriteRenderer.enabled = true;
 
-        transform.position = new Vector3(roundPosition.x, roundPosition.y, transform.position.z);
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log(OnSpawnUnitRequest);
             Debug.Log(selectingModel);
-            OnSpawnUnitRequest.Invoke(roundPosition, selectingModel);
+            if (gameManager.UseCoin(selectingModel.cost))
+            {
+                OnSpawnUnitRequest.Invoke(roundPosition, selectingModel);
+            }
+
             // マウスの位置にユニットを生成する
         }
     }

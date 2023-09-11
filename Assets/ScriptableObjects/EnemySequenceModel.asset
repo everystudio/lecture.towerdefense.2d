@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c513eea7f86f554a995496e4fc0a9da, type: 3}
   m_Name: EnemySequenceModel
   m_EditorClassIdentifier: 
-  segmentIntervalSec: 1
+  intervalSec: 1
   enemyModelList:
   - {fileID: 0}
   - {fileID: 11400000, guid: 8e6cc8f622ca1e345b135a2f11867b0e, type: 2}
