@@ -8,8 +8,12 @@ public class EnemyController : MonoBehaviour
     public GameObject healthBarPrefab;
     private FollowGauge followGauge;
 
+    private EnemyModel enemyModel;
+
     public void Initialize(EnemyModel enemyModel, LineRenderer lineRenderer)
     {
+        this.enemyModel = enemyModel;
+
         LineMover lineMover = GetComponent<LineMover>();
         lineMover.Initialize(0, enemyModel.enemySpeed, lineRenderer);
         lineMover.OnEndReached += LineMover_OnEndReached;
@@ -20,14 +24,13 @@ public class EnemyController : MonoBehaviour
 
         followGauge = Instantiate(Resources.Load<GameObject>("Prefabs/HealthBar"), rootTransform).GetComponent<FollowGauge>();
         followGauge.SetTarget(transform, Vector2.up * 0.5f);
-
     }
 
     private void LineMover_OnEndReached(object sender, EventArgs e)
     {
         //Debug.Log("終端に到着しました");
 
-        Castle.OnTakeDamage?.Invoke(10f);
+        Castle.OnTakeDamage?.Invoke(enemyModel.enemyPower);
         OnEndReached?.Invoke(this, EventArgs.Empty);
 
         Destroy(gameObject);

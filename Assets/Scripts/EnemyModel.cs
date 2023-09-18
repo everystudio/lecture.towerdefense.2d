@@ -8,6 +8,6 @@ public class EnemyModel : ScriptableObject
     public string enemyName;
     public Sprite enemySprite;
     public int enemyHealth;
-    public int enemyDamage;
+    public int enemyPower;
     public float enemySpeed;
 }

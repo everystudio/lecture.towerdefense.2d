@@ -15,5 +15,5 @@ MonoBehaviour:
   enemyName: tako
   enemySprite: {fileID: 21300000, guid: beaaf9db0c06b4b41908d5603809ee1b, type: 3}
   enemyHealth: 1
-  enemyDamage: 1
-  enemySpeed: 1
+  enemyPower: 35
+  enemySpeed: 5

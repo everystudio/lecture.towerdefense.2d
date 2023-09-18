@@ -28,6 +28,7 @@ public class FollowGauge : MonoBehaviour
     void Update()
     {
         RefreshPosition();
+
     }
 
     private void RefreshPosition()

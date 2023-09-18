@@ -9,12 +9,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int initialCoin = 10;
     public static UnityEvent<int> OnGoldChanged = new UnityEvent<int>();
 
+    public GameObject panelGameOver;
+
     // 一定時間ごとにcoinが増える
     private void Start()
     {
         coin = initialCoin;
         StartCoroutine(AddCoin());
         OnGoldChanged.Invoke(coin);
+
+        Castle.OnCastleDestroy.AddListener(() =>
+        {
+            Debug.Log("GameOver");
+            panelGameOver.SetActive(true);
+        });
     }
 
     IEnumerator AddCoin()
