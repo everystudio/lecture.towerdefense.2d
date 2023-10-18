@@ -38,7 +38,7 @@ public class UnitManager : MonoBehaviour
 
     private void OnRemovedUnit(Vector2Int arg0)
     {
-        Debug.Log("UnitManager.OnRemovedUnit");
+        //Debug.Log("UnitManager.OnRemovedUnit");
         try
         {
             playerUnitDict.Remove(arg0);

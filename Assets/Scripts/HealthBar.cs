@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        if (target)
+        if (target != null)
         {
             // World PositionをScreen Positionに変換
             Vector2 screenPos = Camera.main.WorldToScreenPoint(target.position + offset);

@@ -32,7 +32,7 @@ public class PlayerUnitSelectButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("クリックされた" + gameObject.name);
+        //Debug.Log("クリックされた" + gameObject.name);
         OnUnitSelect.Invoke(unitModel);
     }
 }

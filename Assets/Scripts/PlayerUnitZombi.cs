@@ -72,8 +72,8 @@ public class PlayerUnitZombi : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(OnSpawnUnitRequest);
-            Debug.Log(selectingModel);
+            //Debug.Log(OnSpawnUnitRequest);
+            //Debug.Log(selectingModel);
             if (gameManager.UseCoin(selectingModel.cost))
             {
                 OnSpawnUnitRequest.Invoke(roundPosition, selectingModel);

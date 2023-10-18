@@ -46,9 +46,9 @@ public class EnemyLine : MonoBehaviour
             {
                 GameObject enemyPrefab = Resources.Load<GameObject>("Prefabs/Enemy");
                 EnemyController enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity).GetComponent<EnemyController>();
-                Debug.Log(enemy);
-                Debug.Log(enemyModel);
-                Debug.Log(lineRenderer);
+                //Debug.Log(enemy);
+                //Debug.Log(enemyModel);
+                //Debug.Log(lineRenderer);
                 enemy.Initialize(enemyModel, lineRenderer);
             }
 

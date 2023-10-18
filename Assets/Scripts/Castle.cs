@@ -15,6 +15,8 @@ public class Castle : MonoBehaviour
     public static UnityEvent<float> OnTakeDamage = new UnityEvent<float>();
     public static UnityEvent OnCastleDestroy = new UnityEvent();
 
+    public float Health => currentHealth;
+
     private void Start()
     {
         OnTakeDamage.AddListener(TakeDamage);

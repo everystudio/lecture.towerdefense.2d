@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: "\u30B9\u30E9\u30A4\u30E0"
   maxHp: 0
-  attack: 0
+  attack: 3
   defense: 0
   moveSpeed: 0
   attackRange: 0
   attackSpeed: 0
   cost: 10
+  attackIntervalSec: 3
   spriteUnit: {fileID: 21300000, guid: b6034c16fb5945e40827c59161f495f6, type: 3}
   spriteIcon: {fileID: 21300000, guid: 7d978051eb35f4949961f530c1073298, type: 3}

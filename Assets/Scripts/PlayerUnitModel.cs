@@ -13,6 +13,7 @@ public class PlayerUnitModel : ScriptableObject
     public int attackRange;
     public int attackSpeed;
     public int cost;
+    public float attackIntervalSec;
     public Sprite spriteUnit;
     public Sprite spriteIcon;
 }
