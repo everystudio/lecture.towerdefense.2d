@@ -22,4 +22,4 @@ MonoBehaviour:
   cost: 20
   attackIntervalSec: 2.5
   spriteUnit: {fileID: 21300000, guid: 83f4a0b0d10dde546875b1c507f112f0, type: 3}
-  spriteIcon: {fileID: 21300000, guid: 3f6fe8a98bc11604a85290fa0ac09b22, type: 3}
+  spriteIcon: {fileID: 21300000, guid: 6ec09d3d326c77c4cbf20bb942877fee, type: 3}
